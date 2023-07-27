@@ -1,6 +1,6 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axios from "axios";
+// import axios from "axios";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
@@ -12,7 +12,13 @@ function App() {
 	const getUser = async () => {
 		try {
 			const url = `${process.env.REACT_APP_API_URL}/auth/login/success`;
-			const { data } = await axios.get(url, { withCredentials: true });
+			let data = "";
+			await fetch(url, {
+				method: 'GET',
+				credentials: 'include'
+			}).then((response) => response.json())
+				.then((res) => data = res);
+				
 			setUser(data.user);
 		} catch (err) {
 			console.log(err);

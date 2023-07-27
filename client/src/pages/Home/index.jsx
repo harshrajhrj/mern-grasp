@@ -5,6 +5,7 @@ function Home(userDetails) {
 	const logout = () => {
 		window.open(`${process.env.REACT_APP_API_URL}/auth/logout`, "_self");
 	};
+	
 	return (
 		<div className={styles.container}>
 			<h1 className={styles.heading}>Home</h1>
