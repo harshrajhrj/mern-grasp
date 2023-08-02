@@ -1,47 +1,19 @@
-require("dotenv").config();
-require('./connect-db')();
-const express = require("express");
-const cors = require("cors");
-const passport = require("passport");
-const authRoute = require("./routes/auth");
-const expressSession = require("express-session");
-const mongoSession = require('connect-mongo');
-require("./passport");
+require('./mongodb')();
+const express = require('express');
 const app = express();
+const cors = require('cors');
 
-app.use(
-	expressSession({
-		secret: 'test user session',
-		cookie: {
-			maxAge: 10000
-		},
-		saveUninitialized: false,
-		name: 'test-session',
-		resave: false,
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-		// using MongoDB based session storage
-		store: mongoSession.create({
-			mongoUrl: process.env.DB_URL,
-			autoRemove: 'interval',
-			autoRemoveInterval: 10,
-		})
-	})
-);
-// expired sessions aren't deleted
+app.use(cors({
+    origin: 'http://localhost:3000',
+    methods: 'GET,PUT,POST,DELETE',
+    credentials: true
+}));
 
-app.use(passport.authenticate('session'));
-app.use(passport.initialize());
-app.use(passport.session());
+// client http://localhost:8080/api/student POST
+// "/"
+app.use('/', require('./routes/CRUD_API'));
 
-app.use(
-	cors({
-		origin: "http://localhost:3000",
-		methods: "GET,POST,PUT,DELETE",
-		credentials: true,
-	})
-);
-
-app.use("/auth", authRoute);
-
-const port = process.env.PORT || 8080;
-app.listen(port, () => console.log(`Listenting on port ${port}...`));
+app.listen(8080, () => console.log('Listening on port 8080'));
