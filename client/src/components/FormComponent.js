@@ -14,7 +14,7 @@ const FormComponent = () => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(formDataObj),
-            credentials: 'include'
+            credentials: 'include',
         }).then((response) => response.json())
             .then((data) => {
                 console.log(data);
@@ -26,10 +26,16 @@ const FormComponent = () => {
             <form onSubmit={sendFormData}>
                 <label htmlFor="name">Name</label>
                 <input name="name" type="text" id="name" />
+
                 <label htmlFor="age">Age</label>
                 <input name="age" type="number" id="age" />
+
+                <label htmlFor="roll">Roll</label>
+                <input name="roll" type="number" id="roll" />
+
                 <label htmlFor="dob">DOB</label>
                 <input name="dob" type="date" id="dob" />
+
                 <button type="submit">Submit</button>
             </form>
         </>

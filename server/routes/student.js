@@ -9,14 +9,18 @@ app.post('/student', async (req, res) => {
         const req_name = req.body.name;
         const req_age = req.body.age;
         const req_dob = req.body.dob;
+        const req_roll = req.body.roll;
+        // const { name, age, dob, roll } = req.body;
 
         const newStudent = new student({
             name: req_name,
             age: req_age,
-            dob: req_dob
+            dob: req_dob,
+            roll: req_roll
         });
 
         await newStudent.save().then((data) => { console.log(data) });
+
         res.status(200).json({
             message: 'Your data has been saved successfully.'
         });
@@ -24,5 +28,14 @@ app.post('/student', async (req, res) => {
         console.log(err.message);
     }
 });
+
+app.get('/student', async (req, res) => {
+    try {
+        const students = await student.find();
+        res.status(200).json(students);
+    } catch (err) {
+        console.log(err.message);
+    }
+})
 
 module.exports = app;
