@@ -1,5 +1,5 @@
-const student = require('../schema/student');
-const app = require('express').Router();
+const student = require("../schema/student");
+const app = require("express").Router();
 
 // client http://localhost:8080/api/student POST
 // /api/student
