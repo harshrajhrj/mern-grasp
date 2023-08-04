@@ -30,6 +30,8 @@ const FormComponent = () => {
                 <input name="age" type="number" id="age" />
                 <label htmlFor="dob">DOB</label>
                 <input name="dob" type="date" id="dob" />
+                <label htmlFor="roll">Roll</label>
+                <input name="roll" type="number" id="roll" />
                 <button type="submit">Submit</button>
             </form>
         </>
