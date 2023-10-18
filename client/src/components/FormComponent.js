@@ -1,4 +1,4 @@
-import React from "react";
+import {} from "react";
 
 const FormComponent = () => {
     // const [formState, setFormState] = useState(null);
@@ -8,18 +8,19 @@ const FormComponent = () => {
         const formData = new FormData(data.target),
             formDataObj = Object.fromEntries(formData.entries())
 
-        fetch(`${process.env.REACT_APP_API_URL}/api/student`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(formDataObj),
-            credentials: 'include',
-        }).then((response) => response.json())
-            .then((data) => {
-                console.log(data);
-                // setFormState(data);
-            });
+        console.log(formDataObj);
+        // fetch(`${process.env.REACT_APP_API_URL}/api/student`, {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify(formDataObj),
+        //     credentials: 'include',
+        // }).then((response) => response.json())
+        //     .then((data) => {
+        //         console.log(data);
+        //         // setFormState(data);
+        //     });
     }
     return (
         <>
@@ -28,7 +29,10 @@ const FormComponent = () => {
                 <input name="name" type="text" id="name" />
 
                 <label htmlFor="age">Age</label>
-                <input name="age" type="number" id="age" />
+                <input name="age" type="number" />
+
+                <label htmlFor="age">Father's age</label>
+                <input name="age" type="number" />
 
                 <label htmlFor="roll">Roll</label>
                 <input name="roll" type="number" id="roll" />
